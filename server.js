@@ -1,12 +1,17 @@
 const express = require('express');
 
+const projectRoute = require('./projectRoute.js');
+
 const server = express();
 
-server.use(express.json);
+server.use(express.json());
+
 server.use(logger);
 
+server.use('/api/projects', projectRoute);
+
 server.get('/', (req, res) => {
-    res.send(`<h2>Let's do this!`)
+    res.send({messageOfTheDay:process.env.MOTD});
 });
 
 function logger(req, res, next) {
