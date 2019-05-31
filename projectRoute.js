@@ -10,7 +10,7 @@ router.use(express.json());
 
 router.get('/', async (req, res) => {
     try{
-        const projects = await Projects.get(req.query);
+        const projects = await Projects.get();
         res.status(200).json(projects);
     } catch (error) {
         console.log(error);
