@@ -18,6 +18,17 @@ router.get('/', async (req, res) => {
     }
 });
 
+router.get('/:id', async (req, res) => {
+    try {
+        const { id } = req.param.id;
+        const projectById = await Projects.get(id);        
+        res.status(200).json(projectById);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: 'Unable to retrieve that project.' });
+    }
+})
+
 router.post('/', async (req, res) => {
     try {
         const newProject = await Projects.insert(req.body);
